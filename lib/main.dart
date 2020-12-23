@@ -4,6 +4,10 @@ void main() => runApp(MyApp(),);
 
 class MyApp extends StatelessWidget{
 
+  answerquestion(){
+    print("This answer chosen.");
+  }
+
   @override
   Widget build(BuildContext context){
      return MaterialApp(home:
@@ -17,19 +21,25 @@ class MyApp extends StatelessWidget{
            
            RaisedButton(
              child: Text('Answer 1'),
-             onPressed: (null),
+             onPressed: (answerquestion), // Here answerquestion is named function
            ),
            RaisedButton(
              child: Text('Answer 2'),
-             onPressed: (null),
+             onPressed: () {
+               print('Answer 2 chosen'); // It is Anonymous function.
+             },
            ),
            RaisedButton(
              child: Text('Answer 3'),
-             onPressed: (null),
+             onPressed: (){
+               print('Answer 3 chosen');
+             },
            ),
            RaisedButton(
              child: Text('Answer 4'),
-             onPressed: (null),
+             onPressed: (){
+               print('Answer 4 chosen');
+             },
            ),
          ],
        ),
