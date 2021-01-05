@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:learn_from_course/question.dart';
 
 void main() => runApp(MyApp(),);
 
@@ -28,7 +29,7 @@ class _MyAppState extends State<MyApp>{
   Widget build(BuildContext context){
 
     var _questions = ['what\'s your favorite color?',
-                    'what\'s your favorite animal?'];
+                      'what\'s your favorite animal?'];
 
     return MaterialApp(home:
     Scaffold(
@@ -37,9 +38,9 @@ class _MyAppState extends State<MyApp>{
       ),
       body: Column(
         children: [
-          Text(
+          Question(questionText: _questions[_questionIndex],
             //questions[0],
-            _questions[_questionIndex],
+            //_questions[_questionIndex],
           ),
 
           RaisedButton(
