@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:learn_from_course/question.dart';
+import 'package:learn_from_course/answer.dart';
 
 void main() => runApp(MyApp(),);
 
@@ -43,7 +44,7 @@ class _MyAppState extends State<MyApp>{
             //_questions[_questionIndex],
           ),
 
-          RaisedButton(
+          /*RaisedButton(
             child: Text('Answer 1'),
             onPressed: (answerQuestion), // Here answerQuestion is named function
           ),
@@ -64,7 +65,11 @@ class _MyAppState extends State<MyApp>{
             onPressed: (){
               print('Answer 4 chosen');
             },
-          ),
+          ),*/
+          Answer(selectHandler: answerQuestion,), // The function address we are passing around is also known as a 'callback'. because the receiving widget call it in the future.
+          Answer(selectHandler: answerQuestion,), // A pointer at a function to a widget
+          Answer(selectHandler: answerQuestion,), // 'answerQuestion' function can be forwarded to answer widget, without parentheses, because we don't want to execute this 'answerQuestion' function immediately, when dart reads this.
+          Answer(selectHandler: answerQuestion,),
         ],
       ),
     ),
