@@ -16,10 +16,27 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp>{
 
+  final _questions =  const [{'questionText': 'What\'s your favourite color?',
+    'answers' : ['Black', 'Red', 'Green', 'White'],
+  },
+    {
+      'questionText': 'What\'s your favourite animal?',
+      'answers' : ['Cat', 'Lion', 'Tiger', 'Dog'],
+
+    },
+    {
+      'questionText': 'Who\'s your favourite instructor?',
+      'answers' : ['Max', 'Max', 'Max', 'Max'],
+    }];
+
   var _questionIndex = 0;
 
-
   void _answerQuestion(){
+    if(_questionIndex < _questions.length){
+        print('We have more questions!');
+    }else{
+      print('No more questions!');
+    }
     setState(() {
       _questionIndex = _questionIndex + 1;
     });
@@ -29,8 +46,10 @@ class _MyAppState extends State<MyApp>{
   @override
   Widget build(BuildContext context){
 
-    //var _questions = [{'questionText': 'What\'s your favourite color?',  // Here we can use final instead of var because we never intend to change these values once our program runs.
-    final _questions = [{'questionText': 'What\'s your favourite color?',
+     /*var _questions = [{'questionText': 'What\'s your favourite color?',  // Here we can use final instead of var because we never intend to change these values once our program runs.
+      *final means runtime constant value. At the point of time this code executes, we log in final values. and if we use const instead of final that means this is compile time constant
+      * we are using here const to protect against changes*/
+    /*const _questions = [{'questionText': 'What\'s your favourite color?', // Dart has a feature called scoping. it's treated as a variable or a constant that's only available in build method but not in the entire class. that's why we are moving this list from build method to the overall MyAppState class.
                        'answers' : ['Black', 'Red', 'Green', 'White'],
                       },
                       {
@@ -41,7 +60,7 @@ class _MyAppState extends State<MyApp>{
                       {
                         'questionText': 'Who\'s your favourite instructor?',
                         'answers' : ['Max', 'Max', 'Max', 'Max'],
-                      }];
+                      }];*/
 
 
     return MaterialApp(home:
@@ -49,7 +68,7 @@ class _MyAppState extends State<MyApp>{
       appBar: AppBar(
         title: Text('App Bar'),
       ),
-      body: Column(
+      body: _questionIndex < _questions.length ? Column(
         children: [
           Question(questionText: _questions[_questionIndex]['questionText'],
             //questions[0],
@@ -105,7 +124,7 @@ class _MyAppState extends State<MyApp>{
           Answer(selectHandler: answerQuestion,),
         */
         ],
-      ),
+      ) : Center( child: Text('You did it'),),
     ),
     );
   }
