@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:learn_from_course/question.dart';
 import 'package:learn_from_course/answer.dart';
+import 'package:learn_from_course/quiz.dart';
+import 'package:learn_from_course/result.dart';
 
 void main() => runApp(MyApp(),);
 
@@ -17,7 +19,12 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp>{
 
   final _questions =  const [{'questionText': 'What\'s your favourite color?',
-    'answers' : ['Black', 'Red', 'Green', 'White'],
+    'answers' : [
+      {'text': 'Black', 'score': 10},
+      {'text': 'Red', 'score': 20},
+      {'text': 'Green', 'score': 30},
+      {'text': 'White', 'score': 40}
+      ],
   },
     {
       'questionText': 'What\'s your favourite animal?',
@@ -62,23 +69,22 @@ class _MyAppState extends State<MyApp>{
                         'answers' : ['Max', 'Max', 'Max', 'Max'],
                       }];*/
 
-
     return MaterialApp(home:
     Scaffold(
       appBar: AppBar(
         title: Text('App Bar'),
       ),
-      body: _questionIndex < _questions.length ? Column(
-        children: [
-          Question(questionText: _questions[_questionIndex]['questionText'],
-            //questions[0],
-            //_questions[_questionIndex],
-          ),
-          ...(_questions[_questionIndex]['answers'] as List<String>).map((answer){
-            return Answer(selectHandler: _answerQuestion, answerText: answer,);
-          }).toList()
-
-        /* Transforming this list of maps into list of widgets.
+      body: _questionIndex < _questions.length ?
+         /*Column(
+          children: [
+            Question(questionText: _questions[_questionIndex]['questionText'],
+              //questions[0],
+              //_questions[_questionIndex],
+            ),
+            ...(_questions[_questionIndex]['answers'] as List<String>).map((answer){
+              return Answer(selectHandler: _answerQuestion, answerText: answer,);
+            }).toList()
+         *//* Transforming this list of maps into list of widgets.
          * Here I am accessing a _questions which is a list. and a list is a class.
          * and this class defines a map method here. A map method executes a 'function' which we have to pass as an argument
          * to map on every element in the list on which we are calling map.
@@ -94,9 +100,8 @@ class _MyAppState extends State<MyApp>{
          * answer to my answer widget
          * So now I am going to tell dart that my answer is a list of String.
          * when at last we add '.toList' it converts the value map gives us to a list.
-         * this ... means spread operator. It handles nested list*/
-
-          /*RaisedButton(
+         * this ... means spread operator. It handles nested list*//*
+         *//*RaisedButton(
             child: Text('Answer 1'),
             onPressed: (answerQuestion), // Here answerQuestion is named function
           ),
@@ -117,14 +122,17 @@ class _MyAppState extends State<MyApp>{
             onPressed: (){
               print('Answer 4 chosen');
             },
-          ),*/
-          /*Answer(selectHandler: answerQuestion,), // The function address we are passing around is also known as a 'callback'. because the receiving widget call it in the future.
-          Answer(selectHandler: answerQuestion,), // A pointer at a function to a widget
-          Answer(selectHandler: answerQuestion,), // 'answerQuestion' function can be forwarded to answer widget, without parentheses, because we don't want to execute this 'answerQuestion' function immediately, when dart reads this.
-          Answer(selectHandler: answerQuestion,),
-        */
+          ),*//*
+        *//*Answer(selectHandler: answerQuestion,), // The function address we are passing around is also known as a 'callback'. because the receiving widget call it in the future.
+            Answer(selectHandler: answerQuestion,), // A pointer at a function to a widget
+            Answer(selectHandler: answerQuestion,), // 'answerQuestion' function can be forwarded to answer widget, without parentheses, because we don't want to execute this 'answerQuestion' function immediately, when dart reads this.
+            Answer(selectHandler: answerQuestion,),
+          *//*
+
+
         ],
-      ) : Center( child: Text('You did it'),),
+      )*/
+          Quiz(answerQuestion: _answerQuestion, questions: _questions, questionIndex : _questionIndex): Result(),
     ),
     );
   }
